@@ -1,38 +1,193 @@
-.App {
-  text-align: center;
-}
+/* src/App.css */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* 1. Import a modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 2. Setup the animated gradient background and base styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  background: #232946; /* Calm deep blue */
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 3. The "Glassmorphism" Card */
+.app-container {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px 40px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  @media (max-width: 500px) {
+  .app-container { padding: 10px 5px; }
+  h1, h2 { font-size: 1em }
+  .answer-btn { font-size: 0.95em; padding: 12px; }
+}
+
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 4. The new Progress Bar */
+.progress-container {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  height: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 0%; /* Will be updated by React */
+  transition: width 0.5s ease-in-out;
+}
+
+/* Animation for cards */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.question-card, .result-card {
+  animation: fadeIn 0.6s ease-out;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.6em;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+/* 5. Modern Answer Buttons */
+.answer-options {
+  display: grid;
+  gap: 15px;
+}
+
+.answer-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.answer-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.answer-btn:active {
+  transform: translateY(0);
+}
+
+/* 6. Styled Result Screen */
+.result-card h2 {
+  font-size: 1.8em;
+  font-weight: 400;
+}
+
+#character-name {
+  font-size: 2.8em;
+  margin: 10px 0;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#character-image {
+  width: 220px;               /* or whatever size you want */
+  max-width: 90%;
+  height: auto;
+  border-radius: 20px;        /* Soft corners instead of a circle */
+  object-fit: contain;        /* Show whole image with aspect ratio */
+  background: rgba(255,255,255,0.12);
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#character-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+#restart-btn {
+  background-color: #fff;
+  color: #1d2b64;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  margin-top: 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#restart-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.answer-btn.selected {
+  background: rgba(88, 146, 255, 0.45);
+  border: 2px solid #4287f5;
+  color: #fff;
+}
+/* Add this to the end of your App.css file */
+
+/* Style for the button the user just clicked */
+.answer-btn.selected {
+  background-color: #55828b; /* Using the "Serene" theme's accent color */
+  color: #fff;
+  border-color: #55828b;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(85, 130, 139, 0.2);
+}
+
+/* Style for all buttons after a selection has been made */
+.answer-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Style for the non-selected buttons to fade them out */
+.answer-btn:disabled:not(.selected) {
+  background-color: transparent;
+  opacity: 0.5;
 }
