@@ -37,7 +37,7 @@ function App() {
     setSelectedIdx(history[history.length - 1] ?? null); // Restore previous choice
   }
 
-  // Result screen stays same as before
+  // Result screen with donation button
   if (step >= questions.length) {
     const values = Object.values(score);
     let topChar, c;
@@ -124,6 +124,27 @@ function App() {
               Share on Reddit
             </button>
           </div>
+          {/* Donation button */}
+          <a
+            href="https://buymeacoffee.com/ashforyou"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              margin: "22px 0 10px 0",
+              background: "#FFDD00",
+              color: "#000",
+              borderRadius: "10px",
+              padding: "15px 30px",
+              fontWeight: "bold",
+              textDecoration: "none",
+              fontSize: "1.15em",
+              boxShadow: "0 4px 18px rgba(0,0,0,0.10)",
+              letterSpacing: "0.5px"
+            }}
+          >
+            ☕ Buy Me a Coffee
+          </a>
         </div>
       </div>
     );
